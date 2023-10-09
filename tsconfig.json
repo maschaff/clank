@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "removeComments": true,
+    "lib": [
+      "esnext"
+    ]
+  },
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts"]
+}
