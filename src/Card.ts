@@ -1,7 +1,7 @@
 import {Effect} from "./effects";
 
 export type CardType = 'basic' | 'companion' | 'gem' | 'device' | 'monster';
-export type CardEffectType = 'arrive' | 'acquire' | 'danger' | 'defeat' | 'use' | 'play';
+export type CardEffectType = 'arrive' | 'acquire' | 'danger' | 'defeat' | 'use' | 'play' | 'skill' | 'points';
 
 export interface CardEffect {
     type: CardEffectType;
@@ -11,7 +11,7 @@ export interface CardEffect {
 
 export interface Card {
     name: string;
-    description: string;
+    description?: string;
     type: CardType;
     dragon?: boolean;
     danger?: number;
@@ -20,20 +20,18 @@ export interface Card {
     crystalCaveOnly?: boolean;
 }
 
-export interface PurchasableCard extends Card {
-    cost: number;
-}
-
-export interface PlayableCard extends PurchasableCard {
+export interface PlayableCard extends Card {
     type: 'basic' | 'companion' | 'gem';
-    boots?: number;
-    skill?: number;
-    sword?: number;
-    value?: number;
+    boots?: number | 'effect';
+    skill?: number | 'effect';
+    swords?: number | 'effect';
+    value?: number | 'effect';
+    cost?: number;
 }
 
-export interface DeviceCard extends PurchasableCard {
+export interface DeviceCard extends Card {
     type: 'device';
+    cost: number;
 }
 
 export interface MonsterCard extends Card {
@@ -42,7 +40,7 @@ export interface MonsterCard extends Card {
 }
 
 export function isPlayableCard(card: Card): card is PlayableCard {
-    return ['basic' ,'companion', 'gem'].includes(card.type);
+    return ['basic', 'companion', 'gem'].includes(card.type);
 }
 
 export function isDeviceCard(card: Card): card is DeviceCard {

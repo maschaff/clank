@@ -1,8 +1,7 @@
-import {Card} from "./Card";
 import {playerDefaults} from "./config"
-import {Dungeon, Room, RoomType, Tunnel} from "./dungeon";
-import {isMarketItem, Loot, LootType} from "./Loot";
-
+import {Deck} from "./Deck";
+import {Dungeon, Room, Tunnel} from "./dungeon";
+import {isMarketItem, Loot} from "./Loot";
 
 export class Player {
     name: string;
@@ -16,13 +15,12 @@ export class Player {
     room: Room | null;
     loot: Loot[];
 
-    deck: Card[];
-    discardPile: Card[];
-    hand: Card[];
+    deck: Deck;
 
     constructor(name: string, options?: {
         clank?: number,
         cubes?: number,
+        deck?: Deck,
         gold?: number,
         hp?: number,
     }) {
@@ -30,6 +28,8 @@ export class Player {
         this.dungeon = null;
         this.room = null;
         this.loot = [];
+
+        this.deck = options?.deck ?? new Deck(playerDefaults.cards);
 
         this.clank = options?.clank ?? playerDefaults.clank;
         this.cubes = options?.cubes ?? playerDefaults.cubes;

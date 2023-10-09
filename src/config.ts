@@ -1,4 +1,13 @@
+import {Card} from "./Card";
+import {sidestep, stumble, scramble, burgle} from "./cards";
 import {MajorSecretName, MinorSecretName} from "./Loot";
+
+/*
+    Mercenary x15
+    Explore x15
+    Secret Tome x12
+    Goblin x1
+ */
 
 export const playerDefaults = {
     hp: 10,
@@ -6,7 +15,12 @@ export const playerDefaults = {
     clank: 0,
     gold: 0,
     loot: [],
-    deck: []
+    cards: [
+        ...Array(6).fill(burgle),
+        ...Array(2).fill(stumble),
+        sidestep,
+        scramble,
+    ] as Card[]
 }
 
 export const minorSecrets: MinorSecretName[] = [

@@ -43,3 +43,5 @@ export type Effect =
     | "if_has_mastery_token_worth_10_points"
     | "worth_1_point_per_5_gold"
     | "worth_4_points_if_has_two_of_following_chalice_dragon_egg_monkey_idol"
+    | "put_3_dragon_cubes_back_in_bag"
+    | "plus_1_gold_or_plus_1_hp"
